@@ -20,8 +20,8 @@ namespace SpaceRace
         List<Rectangle> rightBalls = new List<Rectangle>();
 
         int ballSize = 10;
-        int ballSpeed = 8;
-        int playerSpeed = 6;
+        int ballSpeed = 5;
+        int playerSpeed = 4;
         int p1Score = 0;
         int p2Score = 0;
 
@@ -89,7 +89,10 @@ namespace SpaceRace
             {
             //move players
             movePlayer();
-     
+
+            //generate and move left obstacles
+            Obstacles();      
+            
             Refresh();
             }
 
@@ -97,6 +100,12 @@ namespace SpaceRace
             {
             e.Graphics.FillRectangle(whiteBrush, player1);
             e.Graphics.FillRectangle(whiteBrush, player2);
+
+            for (int i =0; i < leftBalls.Count(); i++)
+            {
+                e.Graphics.FillEllipse(whiteBrush, leftBalls[i]);
+                e.Graphics.FillEllipse(whiteBrush, rightBalls[i]);
+            }
 
             }
 
@@ -107,7 +116,7 @@ namespace SpaceRace
 
             private void quitButton_Click(object sender, EventArgs e)
             {
-
+            Application.Exit(); 
             }
 
         public void movePlayer()
@@ -133,24 +142,49 @@ namespace SpaceRace
 
         }  
 
-        public void leftObstacles()
+        public void Obstacles()
         {
             randValue = randGen.Next(0, 101);
 
             //generat new balls
-            if (randValue <15)
+            if (randValue <10)
             {
-                int x = randGen.Next(10, this.Width - ballSize * 2);
-                leftBalls.Add(new Rectangle(x, 0, ballSize, ballSize));               
+                int x = randGen.Next(10, this.Height - ballSize * 2);
+                leftBalls.Add(new Rectangle(0, x, ballSize, ballSize));               
             }
 
+            //move balls
             for (int i = 0; i < leftBalls.Count(); i++)
             {
-                int y = leftBalls[i].X + ballSpeed;
-                leftBalls[i] = new Rectangle(leftBalls[i].X, y, ballSize, ballSize);
+                int y = leftBalls[i].X + ballSpeed; 
+                leftBalls[i] = new Rectangle(y, leftBalls[i].Y, ballSize, ballSize);
             }
 
+            //generat new balls
+            if (randValue < 10)
+            {
+                int x = randGen.Next(10, this.Height - ballSize * 2);
+                rightBalls.Add(new Rectangle(600, x, ballSize, ballSize));
+            }
 
+            //move balls
+            for (int i = 0; i < rightBalls.Count(); i++)
+            {
+                int y = rightBalls[i].X - ballSpeed;
+                rightBalls[i] = new Rectangle(y, rightBalls[i].Y, ballSize, ballSize);
+            }
+
+        }
+
+        public void obstacleCollision()
+        {
+            for (int i = 0; i < leftBalls.Count(); i++)
+            {
+                if (leftBalls[i].X > this.Width - ballSize)
+                {
+                    leftBalls.RemoveAt(i);                   
+                }
+            }
         }
     }
 }
