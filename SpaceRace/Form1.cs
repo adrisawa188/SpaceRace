@@ -91,7 +91,12 @@ namespace SpaceRace
             movePlayer();
 
             //generate and move left obstacles
-            Obstacles();      
+            Obstacles();
+
+            //remove balls when they touch opposite walls
+            obstacleWallCollision();
+
+            playerBallCollision();
             
             Refresh();
             }
@@ -103,7 +108,10 @@ namespace SpaceRace
 
             for (int i =0; i < leftBalls.Count(); i++)
             {
-                e.Graphics.FillEllipse(whiteBrush, leftBalls[i]);
+                e.Graphics.FillEllipse(whiteBrush, leftBalls[i]);               
+            }
+            for (int i = 0; i < rightBalls.Count(); i++)
+            {
                 e.Graphics.FillEllipse(whiteBrush, rightBalls[i]);
             }
 
@@ -149,7 +157,7 @@ namespace SpaceRace
             //generat new balls
             if (randValue <10)
             {
-                int x = randGen.Next(10, this.Height - ballSize * 2);
+                int x = randGen.Next(10, this.Height - 60);
                 leftBalls.Add(new Rectangle(0, x, ballSize, ballSize));               
             }
 
@@ -163,8 +171,8 @@ namespace SpaceRace
             //generat new balls
             if (randValue < 10)
             {
-                int x = randGen.Next(10, this.Height - ballSize * 2);
-                rightBalls.Add(new Rectangle(600, x, ballSize, ballSize));
+                int x = randGen.Next(10, this.Height - 60);
+                rightBalls.Add(new Rectangle(600 - ballSize, x, ballSize, ballSize));
             }
 
             //move balls
@@ -176,15 +184,55 @@ namespace SpaceRace
 
         }
 
-        public void obstacleCollision()
+        public void obstacleWallCollision()
         {
             for (int i = 0; i < leftBalls.Count(); i++)
             {
-                if (leftBalls[i].X > this.Width - ballSize)
+                if (leftBalls[i].X > this.Width)
                 {
                     leftBalls.RemoveAt(i);                   
                 }
             }
+
+            for (int i = 0; i < rightBalls.Count(); i++)
+            {
+                if (rightBalls[i].X > this.Width)
+                {
+                    rightBalls.RemoveAt(i);
+                }
+            }
+        }
+
+        public void playerBallCollision() 
+        {
+            for (int i = 0; i < leftBalls.Count(); i++)
+            {
+                if (player1.IntersectsWith(leftBalls[i]))
+                {
+                    player1.Y = 360;
+                }
+                else if (player2.IntersectsWith(leftBalls[i]))
+                {
+                    player2.Y = 360;
+                }
+            }
+
+            for (int i = 0; i < rightBalls.Count(); i++)
+            {
+                if (player1.IntersectsWith(rightBalls[i]))
+                {
+                    player1.Y = 360;
+                }
+                else if (player2.IntersectsWith(rightBalls[i]))
+                {
+                    player2.Y = 360; 
+                }
+            }                      
+        }
+
+        public void playerWinWall()
+        {
+
         }
     }
 }
