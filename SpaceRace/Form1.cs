@@ -20,6 +20,7 @@ namespace SpaceRace
         List<Rectangle> rightBalls = new List<Rectangle>();
 
         int ballSize = 10;
+        int ballSpeed = 8;
         int playerSpeed = 6;
         int p1Score = 0;
         int p2Score = 0;
@@ -129,6 +130,27 @@ namespace SpaceRace
             {
                 player2.Y += playerSpeed;
             }
-        }       
+
+        }  
+
+        public void leftObstacles()
+        {
+            randValue = randGen.Next(0, 101);
+
+            //generat new balls
+            if (randValue <15)
+            {
+                int x = randGen.Next(10, this.Width - ballSize * 2);
+                leftBalls.Add(new Rectangle(x, 0, ballSize, ballSize));               
+            }
+
+            for (int i = 0; i < leftBalls.Count(); i++)
+            {
+                int y = leftBalls[i].X + ballSpeed;
+                leftBalls[i] = new Rectangle(leftBalls[i].X, y, ballSize, ballSize);
+            }
+
+
+        }
     }
 }
