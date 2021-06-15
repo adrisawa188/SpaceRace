@@ -13,14 +13,14 @@ namespace SpaceRace
     public partial class Form1 : Form
     {
         //global variables
-        Rectangle player1 = new Rectangle(200, 360, 20, 20);
-        Rectangle player2 = new Rectangle(200, 360, 20, 20);
+        Rectangle player1 = new Rectangle(180, 360, 20, 20);
+        Rectangle player2 = new Rectangle(380, 360, 20, 20);
 
         List<Rectangle> leftBalls = new List<Rectangle>();
         List<Rectangle> rightBalls = new List<Rectangle>();
 
-        int ballsize = 10;
-        int playerspeed = 10;
+        int ballSize = 10;
+        int playerSpeed = 6;
         int p1Score = 0;
         int p2Score = 0;
 
@@ -40,26 +40,95 @@ namespace SpaceRace
         public Form1()
         {
             InitializeComponent();
+            startButton.Enabled = false;
+            startButton.Visible = false;
+            quitButton.Enabled = false;
+            quitButton.Visible = false; 
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-
+            switch (e.KeyCode)
+            {
+                case Keys.W:
+                    p1Up = true;
+                    break;
+                case Keys.Up:
+                    p2Up = true;
+                    break;
+                case Keys.S:
+                    p1Down = true;
+                    break;
+                case Keys.Down:
+                    p2Down = true;
+                    break;
+            }
         }
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)
         {
-
+            switch (e.KeyCode)
+            {
+                case Keys.W:
+                    p1Up = false;
+                    break;
+                case Keys.Up:
+                    p2Up = false;
+                    break;
+                case Keys.S:
+                    p1Down = false;
+                    break;
+                case Keys.Down:
+                    p2Down = false;
+                    break;
+            }
         }
 
-        private void gameTimer_Tick(object sender, EventArgs e)
+            private void gameTimer_Tick(object sender, EventArgs e)
+            {
+            //move players
+            movePlayer();
+     
+            Refresh();
+            }
+
+            private void Form1_Paint(object sender, PaintEventArgs e)
+            {
+            e.Graphics.FillRectangle(whiteBrush, player1);
+            e.Graphics.FillRectangle(whiteBrush, player2);
+
+            }
+
+            private void startButton_Click(object sender, EventArgs e)
+            {
+
+            }
+
+            private void quitButton_Click(object sender, EventArgs e)
+            {
+
+            }
+
+        public void movePlayer()
         {
+            if (p1Up == true && player1.Y > 0)
+            {
+                player1.Y -= playerSpeed;
+            }
 
-        }
+            if (p1Down == true && player1.Y < this.Height - player1.Height)
+            {
+                player1.Y += playerSpeed;
+            }
+            if (p2Up == true && player2.Y > 0)
+            {
+                player2.Y -= playerSpeed;
+            }
 
-        private void Form1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+            if (p2Down == true && player2.Y < this.Height - player1.Height)
+            {
+                player2.Y += playerSpeed;
+            }
+        }       
     }
 }
