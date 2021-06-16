@@ -201,6 +201,12 @@ namespace SpaceRace
 
                 outputLabel.Text = "";
 
+                p1.Visible = true;
+                p2.Visible = true;
+
+                p1ScoreLabel.Visible = true;
+                p2ScoreLabel.Visible = true;
+
                 gameState = "running";
             }
             }
@@ -394,6 +400,12 @@ namespace SpaceRace
                 quitButton.Visible = true;
 
                 outputLabel.Text = "Game Paused";
+
+                p1.Visible = false; 
+                p2.Visible = false;
+
+                p1ScoreLabel.Visible = false;
+                p2ScoreLabel.Visible = false;
                                    
                 startButton.Text = "Resume";
             }
