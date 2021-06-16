@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
+using System.Threading;
 
 namespace SpaceRace
 {
@@ -29,6 +31,7 @@ namespace SpaceRace
         bool p1Down = false;
         bool p2Up = false;
         bool p2Down = false;
+        bool pauseKey = false;
 
         SolidBrush whiteBrush = new SolidBrush(Color.White);
 
@@ -37,6 +40,11 @@ namespace SpaceRace
         int randValue = 0;
 
         string gameState = "waiting";
+
+        SoundPlayer sound1 = new SoundPlayer(Properties.Resources._515823__matrixxx__select_granted_04);
+        SoundPlayer sound2 = new SoundPlayer(Properties.Resources._270303__littlerobotsoundfactory__collect_point_01);
+        SoundPlayer sound3 = new SoundPlayer(Properties.Resources._1401__sleep__muted_f_5th);
+        SoundPlayer sound4 = new SoundPlayer(Properties.Resources.Pause_Sound);
 
         public Form1()
         {
@@ -62,8 +70,11 @@ namespace SpaceRace
                 case Keys.Down:
                     p2Down = true;
                     break;
+                case Keys.Escape:
+                    pauseKey = true;
+                    break;
             }
-            this.Focus();
+            
         }
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)
@@ -82,8 +93,11 @@ namespace SpaceRace
                 case Keys.Down:
                     p2Down = false;
                     break;
+                case Keys.Escape:
+                    pauseKey = false;
+                    break;
             }
-            this.Focus();
+            
         }
 
             private void gameTimer_Tick(object sender, EventArgs e)
@@ -105,6 +119,9 @@ namespace SpaceRace
 
             //change the gamestate to over and diplay witch player won
             playerWin();
+
+            //allow player to pause game
+            pause();
             
             Refresh();
             }
@@ -118,6 +135,9 @@ namespace SpaceRace
                 quitButton.Enabled = true;
                 startButton.Visible = true;
                 quitButton.Visible = true;
+
+                pauseLabel.Text = "";
+
             }
             else if (gameState == "running")
             {
@@ -125,6 +145,8 @@ namespace SpaceRace
                 quitButton.Enabled = false;
                 startButton.Visible = false;
                 quitButton.Visible = false;
+
+                pauseLabel.Text = "Press Escape to Pause";
 
                 e.Graphics.FillRectangle(whiteBrush, player1);
                 e.Graphics.FillRectangle(whiteBrush, player2);
@@ -158,21 +180,43 @@ namespace SpaceRace
                 p1ScoreLabel.Text =$"{p1Score}";
                 p2ScoreLabel.Text =$"{p2Score}";
 
-                startButton.Text = "Play Again?";
+                pauseLabel.Text = "";
 
+                startButton.Text = "Play Again?";
+                
             }
         }
 
             private void startButton_Click(object sender, EventArgs e)
             {
-            gameState = "running";
-            gameStart();           
+            if (gameState == "waiting" || gameState == "over")
+            {
+                gameState = "running";
+                gameStart();
+                sound1.Play();
+            }
+            if (gameState == "paused")
+            {
+                sound1.Play();
+
+                gameTimer.Enabled = true;
+                startButton.Enabled = false;
+                startButton.Visible = false;
+                quitButton.Enabled = false;
+                quitButton.Visible = false;
+
+                outputLabel.Text = "";
+
+                gameState = "running";
+            }
             }
 
             private void quitButton_Click(object sender, EventArgs e)
             {
-            Application.Exit();          
-        }
+            sound1.Play();
+            Thread.Sleep(200);
+            Application.Exit();                   
+            }
 
         public void movePlayer()
         {
@@ -257,10 +301,12 @@ namespace SpaceRace
                 if (player1.IntersectsWith(leftBalls[i]))
                 {
                     player1.Y = 360;
+                    sound3.Play();
                 }
                 else if (player2.IntersectsWith(leftBalls[i]))
                 {
                     player2.Y = 360;
+                    sound3.Play();
                 }
             }
 
@@ -269,10 +315,12 @@ namespace SpaceRace
                 if (player1.IntersectsWith(rightBalls[i]))
                 {
                     player1.Y = 360;
+                    sound3.Play();
                 }
                 else if (player2.IntersectsWith(rightBalls[i]))
                 {
-                    player2.Y = 360; 
+                    player2.Y = 360;
+                    sound3.Play();
                 }
             }                      
         }
@@ -285,12 +333,15 @@ namespace SpaceRace
                 p1Score++;
                 p1ScoreLabel.Text = $"{p1Score}";
                 player1.Y = 360;
+                sound2.Play();
              }
             else if (player2.Y < 1)
             {
                 p2Score++;
                 p2ScoreLabel.Text = $"{p2Score}";
                 player2.Y = 360;
+                sound2.Play();
+
             }
 
         }
@@ -330,5 +381,27 @@ namespace SpaceRace
 
             gameTimer.Enabled = true;          
         }
+
+        public void pause()
+        {
+            if (pauseKey == true && gameState == "running")
+            {
+                gameTimer.Enabled = false;
+                gameState = "paused";
+
+                sound4.Play();
+
+                startButton.Enabled = true;
+                startButton.Visible = true;
+                quitButton.Enabled = true;
+                quitButton.Visible = true;
+
+                outputLabel.Text = "Game Paused";
+                pauseLabel.Text = "";
+                    
+                startButton.Text = "Continue?";
+            }
+        }
+       
     }
 }

@@ -38,6 +38,7 @@ namespace SpaceRace
             this.p2ScoreLabel = new System.Windows.Forms.Label();
             this.p1 = new System.Windows.Forms.Label();
             this.p2 = new System.Windows.Forms.Label();
+            this.pauseLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // startButton
@@ -133,12 +134,24 @@ namespace SpaceRace
             this.p2.Text = "P2";
             this.p2.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // pauseLabel
+            // 
+            this.pauseLabel.BackColor = System.Drawing.Color.Transparent;
+            this.pauseLabel.Font = new System.Drawing.Font("ISOCTEUR", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pauseLabel.ForeColor = System.Drawing.Color.White;
+            this.pauseLabel.Location = new System.Drawing.Point(12, 43);
+            this.pauseLabel.Name = "pauseLabel";
+            this.pauseLabel.Size = new System.Drawing.Size(81, 57);
+            this.pauseLabel.TabIndex = 7;
+            this.pauseLabel.Text = "Press Escape to Pause";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(600, 400);
+            this.Controls.Add(this.pauseLabel);
             this.Controls.Add(this.p2);
             this.Controls.Add(this.p1);
             this.Controls.Add(this.p2ScoreLabel);
@@ -168,6 +181,7 @@ namespace SpaceRace
         private System.Windows.Forms.Label p2ScoreLabel;
         private System.Windows.Forms.Label p1;
         private System.Windows.Forms.Label p2;
+        private System.Windows.Forms.Label pauseLabel;
     }
 }
 

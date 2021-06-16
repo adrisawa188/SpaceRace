@@ -65,6 +65,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -78,6 +79,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\startBeep.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\270303__littlerobotsoundfactory__collect-point-01.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\515823__matrixxx__select-granted-04.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1401__sleep__muted-f-5th.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pause Sound.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
