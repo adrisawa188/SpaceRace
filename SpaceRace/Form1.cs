@@ -108,26 +108,61 @@ namespace SpaceRace
             Refresh();
             }
 
-            private void Form1_Paint(object sender, PaintEventArgs e)
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            if (gameState == "waiting")
             {
-            e.Graphics.FillRectangle(whiteBrush, player1);
-            e.Graphics.FillRectangle(whiteBrush, player2);
-            e.Graphics.FillRectangle(whiteBrush, 290, 0, 10, 400);
+                outputLabel.Text = "Space Race";
+                startButton.Enabled = true;
+                quitButton.Enabled = true;
+                startButton.Visible = true;
+                quitButton.Visible = true;
+            }
+            else if (gameState == "running")
+            {
+                startButton.Enabled = false;
+                quitButton.Enabled = false;
+                startButton.Visible = false;
+                quitButton.Visible = false;
 
-            for (int i =0; i < leftBalls.Count(); i++)
-            {
-                e.Graphics.FillEllipse(whiteBrush, leftBalls[i]);               
+                e.Graphics.FillRectangle(whiteBrush, player1);
+                e.Graphics.FillRectangle(whiteBrush, player2);
+                e.Graphics.FillRectangle(whiteBrush, 290, 0, 10, 400);
+
+                for (int i = 0; i < leftBalls.Count(); i++)
+                {
+                    e.Graphics.FillEllipse(whiteBrush, leftBalls[i]);
+                }
+
+                for (int i = 0; i < rightBalls.Count(); i++)
+                {
+                    e.Graphics.FillEllipse(whiteBrush, rightBalls[i]);
+                }
             }
-            for (int i = 0; i < rightBalls.Count(); i++)
+            else if (gameState == "over")
             {
-                e.Graphics.FillEllipse(whiteBrush, rightBalls[i]);
-            }
+                gameTimer.Enabled = false;
+
+                startButton.Enabled = true;
+                quitButton.Enabled = true;
+                startButton.Visible = true;
+                quitButton.Visible = true;
+
+                p1Score = 0;
+                p2Score = 0;
+
+                p1ScoreLabel.Text =$"{p1Score}";
+                p2ScoreLabel.Text =$"{p2Score}";
+
+                startButton.Text = "Play Again?";
 
             }
+        }
 
             private void startButton_Click(object sender, EventArgs e)
             {
-            gameState = "running"; 
+            gameState = "running";
+            gameStart();
             }
 
             private void quitButton_Click(object sender, EventArgs e)
@@ -275,10 +310,18 @@ namespace SpaceRace
             outputLabel.Text = "";
             gameState = "running";
 
+            p1ScoreLabel.Text =$"{p1Score}";
+            p2ScoreLabel.Text = $"{p2Score}";
+
             player1 = new Rectangle(180, 360, 20, 20);
             player2 = new Rectangle(380, 360, 20, 20);
 
+            leftBalls.Clear();
+            leftBalls.Add(new Rectangle(0, 0, ballSize, ballSize));
+            rightBalls.Clear();
+            rightBalls.Add(new Rectangle(600 - ballSize, 0, ballSize, ballSize));
 
+            gameTimer.Enabled = true;
         }
     }
 }

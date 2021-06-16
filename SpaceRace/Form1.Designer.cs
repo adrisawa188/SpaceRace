@@ -46,7 +46,7 @@ namespace SpaceRace
             this.startButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.startButton.Font = new System.Drawing.Font("Consolas", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.startButton.ForeColor = System.Drawing.Color.White;
-            this.startButton.Location = new System.Drawing.Point(190, 119);
+            this.startButton.Location = new System.Drawing.Point(199, 117);
             this.startButton.Name = "startButton";
             this.startButton.Size = new System.Drawing.Size(200, 50);
             this.startButton.TabIndex = 0;
@@ -62,7 +62,7 @@ namespace SpaceRace
             this.quitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.quitButton.Font = new System.Drawing.Font("Consolas", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quitButton.ForeColor = System.Drawing.Color.White;
-            this.quitButton.Location = new System.Drawing.Point(190, 196);
+            this.quitButton.Location = new System.Drawing.Point(199, 195);
             this.quitButton.Name = "quitButton";
             this.quitButton.Size = new System.Drawing.Size(200, 50);
             this.quitButton.TabIndex = 1;
@@ -80,16 +80,16 @@ namespace SpaceRace
             this.outputLabel.BackColor = System.Drawing.Color.Transparent;
             this.outputLabel.Font = new System.Drawing.Font("ISOCTEUR", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.outputLabel.ForeColor = System.Drawing.Color.White;
-            this.outputLabel.Location = new System.Drawing.Point(180, 19);
+            this.outputLabel.Location = new System.Drawing.Point(12, 19);
             this.outputLabel.Name = "outputLabel";
-            this.outputLabel.Size = new System.Drawing.Size(209, 71);
+            this.outputLabel.Size = new System.Drawing.Size(576, 71);
             this.outputLabel.TabIndex = 2;
             this.outputLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // p1ScoreLabel
             // 
             this.p1ScoreLabel.BackColor = System.Drawing.Color.Transparent;
-            this.p1ScoreLabel.Font = new System.Drawing.Font("ISOCTEUR", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p1ScoreLabel.Font = new System.Drawing.Font("ISOCTEUR", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.p1ScoreLabel.ForeColor = System.Drawing.Color.White;
             this.p1ScoreLabel.Location = new System.Drawing.Point(12, 320);
             this.p1ScoreLabel.Name = "p1ScoreLabel";
@@ -100,7 +100,7 @@ namespace SpaceRace
             // p2ScoreLabel
             // 
             this.p2ScoreLabel.BackColor = System.Drawing.Color.Transparent;
-            this.p2ScoreLabel.Font = new System.Drawing.Font("ISOCTEUR", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p2ScoreLabel.Font = new System.Drawing.Font("ISOCTEUR", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.p2ScoreLabel.ForeColor = System.Drawing.Color.White;
             this.p2ScoreLabel.Location = new System.Drawing.Point(507, 320);
             this.p2ScoreLabel.Name = "p2ScoreLabel";
