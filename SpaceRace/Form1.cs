@@ -136,7 +136,7 @@ namespace SpaceRace
                 startButton.Visible = true;
                 quitButton.Visible = true;
 
-                pauseLabel.Text = "";
+                pauseLabel.Text = "Press Escape to Pause at Any Time";
 
             }
             else if (gameState == "running")
@@ -146,7 +146,7 @@ namespace SpaceRace
                 startButton.Visible = false;
                 quitButton.Visible = false;
 
-                pauseLabel.Text = "Press Escape to Pause";
+                pauseLabel.Text = "";
 
                 e.Graphics.FillRectangle(whiteBrush, player1);
                 e.Graphics.FillRectangle(whiteBrush, player2);
@@ -397,8 +397,7 @@ namespace SpaceRace
                 quitButton.Visible = true;
 
                 outputLabel.Text = "Game Paused";
-                pauseLabel.Text = "";
-                    
+                                   
                 startButton.Text = "Continue?";
             }
         }

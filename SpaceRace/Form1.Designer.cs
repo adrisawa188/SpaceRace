@@ -137,13 +137,13 @@ namespace SpaceRace
             // pauseLabel
             // 
             this.pauseLabel.BackColor = System.Drawing.Color.Transparent;
-            this.pauseLabel.Font = new System.Drawing.Font("ISOCTEUR", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pauseLabel.Font = new System.Drawing.Font("ISOCTEUR", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pauseLabel.ForeColor = System.Drawing.Color.White;
-            this.pauseLabel.Location = new System.Drawing.Point(12, 43);
+            this.pauseLabel.Location = new System.Drawing.Point(12, 298);
             this.pauseLabel.Name = "pauseLabel";
-            this.pauseLabel.Size = new System.Drawing.Size(81, 57);
+            this.pauseLabel.Size = new System.Drawing.Size(576, 37);
             this.pauseLabel.TabIndex = 7;
-            this.pauseLabel.Text = "Press Escape to Pause";
+            this.pauseLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // Form1
             // 
