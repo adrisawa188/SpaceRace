@@ -23,7 +23,7 @@ namespace SpaceRace
 
         int ballSize = 10;
         int ballSpeed = 5;
-        int playerSpeed = 4;
+        int playerSpeed = 3;
         int p1Score = 0;
         int p2Score = 0;
 
@@ -172,13 +172,7 @@ namespace SpaceRace
                 quitButton.Visible = true;
 
                 p1.Visible = false;
-                p2.Visible = false;
-
-                p1Score = 0;
-                p2Score = 0;
-
-                p1ScoreLabel.Text =$"{p1Score}";
-                p2ScoreLabel.Text =$"{p2Score}";
+                p2.Visible = false;          
 
                 pauseLabel.Text = "";
 
@@ -365,6 +359,9 @@ namespace SpaceRace
             outputLabel.Text = "";
             gameState = "running";
 
+            p1Score = 0;
+            p2Score = 0;
+
             p1ScoreLabel.Text =$"{p1Score}";
             p2ScoreLabel.Text = $"{p2Score}";
 
@@ -398,7 +395,7 @@ namespace SpaceRace
 
                 outputLabel.Text = "Game Paused";
                                    
-                startButton.Text = "Continue?";
+                startButton.Text = "Resume";
             }
         }
        
