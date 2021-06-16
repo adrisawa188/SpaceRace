@@ -41,10 +41,9 @@ namespace SpaceRace
         public Form1()
         {
             InitializeComponent();
-            //startButton.Enabled = false;
-            //startButton.Visible = false;
-            //quitButton.Enabled = false;
-            //quitButton.Visible = false; 
+
+            p1.Visible = false;
+            p2.Visible = false;          
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -64,6 +63,7 @@ namespace SpaceRace
                     p2Down = true;
                     break;
             }
+            this.Focus();
         }
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)
@@ -83,6 +83,7 @@ namespace SpaceRace
                     p2Down = false;
                     break;
             }
+            this.Focus();
         }
 
             private void gameTimer_Tick(object sender, EventArgs e)
@@ -148,6 +149,9 @@ namespace SpaceRace
                 startButton.Visible = true;
                 quitButton.Visible = true;
 
+                p1.Visible = false;
+                p2.Visible = false;
+
                 p1Score = 0;
                 p2Score = 0;
 
@@ -162,13 +166,13 @@ namespace SpaceRace
             private void startButton_Click(object sender, EventArgs e)
             {
             gameState = "running";
-            gameStart();
+            gameStart();           
             }
 
             private void quitButton_Click(object sender, EventArgs e)
             {
-            Application.Exit(); 
-            }
+            Application.Exit();          
+        }
 
         public void movePlayer()
         {
@@ -190,7 +194,7 @@ namespace SpaceRace
             {
                 player2.Y += playerSpeed;
             }
-
+            this.Focus();
         }  
 
         public void Obstacles()
@@ -313,6 +317,9 @@ namespace SpaceRace
             p1ScoreLabel.Text =$"{p1Score}";
             p2ScoreLabel.Text = $"{p2Score}";
 
+            p1.Visible = true;
+            p2.Visible = true;
+
             player1 = new Rectangle(180, 360, 20, 20);
             player2 = new Rectangle(380, 360, 20, 20);
 
@@ -321,7 +328,7 @@ namespace SpaceRace
             rightBalls.Clear();
             rightBalls.Add(new Rectangle(600 - ballSize, 0, ballSize, ballSize));
 
-            gameTimer.Enabled = true;
+            gameTimer.Enabled = true;          
         }
     }
 }
