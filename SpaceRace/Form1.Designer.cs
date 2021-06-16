@@ -46,9 +46,9 @@ namespace SpaceRace
             this.startButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.startButton.Font = new System.Drawing.Font("Consolas", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.startButton.ForeColor = System.Drawing.Color.White;
-            this.startButton.Location = new System.Drawing.Point(180, 119);
+            this.startButton.Location = new System.Drawing.Point(190, 119);
             this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(209, 55);
+            this.startButton.Size = new System.Drawing.Size(200, 50);
             this.startButton.TabIndex = 0;
             this.startButton.Text = "Start";
             this.startButton.UseVisualStyleBackColor = true;
@@ -62,9 +62,9 @@ namespace SpaceRace
             this.quitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.quitButton.Font = new System.Drawing.Font("Consolas", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quitButton.ForeColor = System.Drawing.Color.White;
-            this.quitButton.Location = new System.Drawing.Point(180, 196);
+            this.quitButton.Location = new System.Drawing.Point(190, 196);
             this.quitButton.Name = "quitButton";
-            this.quitButton.Size = new System.Drawing.Size(209, 55);
+            this.quitButton.Size = new System.Drawing.Size(200, 50);
             this.quitButton.TabIndex = 1;
             this.quitButton.Text = "Quit";
             this.quitButton.UseVisualStyleBackColor = true;
@@ -72,7 +72,6 @@ namespace SpaceRace
             // 
             // gameTimer
             // 
-            this.gameTimer.Enabled = true;
             this.gameTimer.Interval = 20;
             this.gameTimer.Tick += new System.EventHandler(this.gameTimer_Tick);
             // 

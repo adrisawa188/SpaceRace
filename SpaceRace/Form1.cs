@@ -13,8 +13,8 @@ namespace SpaceRace
     public partial class Form1 : Form
     {
         //global variables
-        Rectangle player1 = new Rectangle(180, 360, 20, 20);
-        Rectangle player2 = new Rectangle(380, 360, 20, 20);
+        Rectangle player1;
+        Rectangle player2; 
 
         List<Rectangle> leftBalls = new List<Rectangle>();
         List<Rectangle> rightBalls = new List<Rectangle>();
@@ -36,15 +36,15 @@ namespace SpaceRace
 
         int randValue = 0;
 
-        string gameState;
+        string gameState = "waiting";
 
         public Form1()
         {
             InitializeComponent();
-            startButton.Enabled = false;
-            startButton.Visible = false;
-            quitButton.Enabled = false;
-            quitButton.Visible = false; 
+            //startButton.Enabled = false;
+            //startButton.Visible = false;
+            //quitButton.Enabled = false;
+            //quitButton.Visible = false; 
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -96,7 +96,14 @@ namespace SpaceRace
             //remove balls when they touch opposite walls
             obstacleWallCollision();
 
+            //player collision with balls 
             playerBallCollision();
+
+            //player collision with top wall
+            playerWinWall();
+
+            //change the gamestate to over and diplay witch player won
+            playerWin();
             
             Refresh();
             }
@@ -105,6 +112,7 @@ namespace SpaceRace
             {
             e.Graphics.FillRectangle(whiteBrush, player1);
             e.Graphics.FillRectangle(whiteBrush, player2);
+            e.Graphics.FillRectangle(whiteBrush, 290, 0, 10, 400);
 
             for (int i =0; i < leftBalls.Count(); i++)
             {
@@ -119,7 +127,7 @@ namespace SpaceRace
 
             private void startButton_Click(object sender, EventArgs e)
             {
-
+            gameState = "running"; 
             }
 
             private void quitButton_Click(object sender, EventArgs e)
@@ -232,6 +240,44 @@ namespace SpaceRace
 
         public void playerWinWall()
         {
+            
+            if (player1.Y < 1)
+             {
+                p1Score++;
+                p1ScoreLabel.Text = $"{p1Score}";
+                player1.Y = 360;
+             }
+            else if (player2.Y < 1)
+            {
+                p2Score++;
+                p2ScoreLabel.Text = $"{p2Score}";
+                player2.Y = 360;
+            }
+
+        }
+
+        public void playerWin()
+        {
+            if (p1Score == 5)
+            {
+                gameState = "over";
+                outputLabel.Text = "Player 1 Wins!!";
+            }
+            else if (p2Score == 5)
+            {
+                gameState = "over";
+                outputLabel.Text = "Player 2 Wins!!";
+            }
+        }
+
+        public void gameStart()
+        {
+            outputLabel.Text = "";
+            gameState = "running";
+
+            player1 = new Rectangle(180, 360, 20, 20);
+            player2 = new Rectangle(380, 360, 20, 20);
+
 
         }
     }
